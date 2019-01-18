@@ -1,9 +1,7 @@
-# lista para exibir os produtos disponíveis
-catalogo_produtos = ['maçã', 'banana', 'uva', 'mamão', 'pêssego']
-
 # função para exibir o menu de compra
 def compra():
     import carrinho
+    import catalogo
 
     indice = 0 # inicia uma variável indice com valor 0, para se ajustar a lista
     deseja_continuar = 's'
@@ -11,7 +9,7 @@ def compra():
     print('\nCatálogo de Produtos: ')
 
     while (deseja_continuar == 's'):
-        for i in catalogo_produtos:
+        for i in catalogo.catalogo_produtos:
             print('{0} - {1}'.format(indice, i)) # exibe o indice no loop atual e o item da lista
             indice += 1 # adiciona +1 em indice
             item = input('\nDigite um número para o item desejado: ')

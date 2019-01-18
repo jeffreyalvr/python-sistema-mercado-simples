@@ -50,7 +50,9 @@ def remover_produto_carrinho():
 
 # função para finalizar a compra e reexibir o menu
 def finalizar_carrinho():
-    print('\nCompra finalizada. Obrigado!\nRetornando ao menu...\n')
+    print('\nVocê comprou os seguintes itens: {0}\nObrigado!\nRetornando ao menu...\n'.format(carrinho_produtos))
+    voltar_ao_menu()
 
+def voltar_ao_menu():
     import main
     main.mostrar_menu()
