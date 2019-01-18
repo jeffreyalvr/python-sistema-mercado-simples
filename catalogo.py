@@ -8,8 +8,9 @@ def adicionar_produto():
     novo_produto = str(input('\nDigite um nome para o produto a ser adicionado: '))
     novo_produto.lower()
 
+    # verifica se o produto especificado já existe
     if (novo_produto in catalogo_produtos):
-        print('{0} já existe no catálogo! Retornando ao menu...'.format(novo_produto))
+        print('\n{0} já existe no catálogo! Retornando ao menu...\n'.format(novo_produto))
         voltar_ao_menu()
     else:
         catalogo_produtos.append(novo_produto)
@@ -25,6 +26,7 @@ def remover_produto():
     while (deseja_continuar == 's'):
         print('Produtos no catálogo: {0}'.format(catalogo_produtos))
 
+        # verifica se a lista está vazia
         if (len(catalogo_produtos) == 0):
             print('\nNão existem itens no catálogo! Retornando ao menu...\n')
             voltar_ao_menu()
@@ -32,12 +34,14 @@ def remover_produto():
             produto = str(input('\nDigite um nome para o produto a ser removido: '))
             produto.lower()
 
+            # verifica se o produto especificado está na lista, caso sim, remova-o
             if (produto in catalogo_produtos):
+                # remove o produto de catalogo_produtos
                 catalogo_produtos.remove(produto)
                 print('{0} removido(a) com sucesso! Retornando ao menu...'.format(produto))
                 voltar_ao_menu()
             else:
-                deseja_continuar = int(input("{0} não foi encontrado! Pressione 'S' para tentar novamente OU 'N' para voltar ao menu: ").format(produto))
+                deseja_continuar = str(input("{0} não foi encontrado! Pressione 'S' para tentar novamente OU 'N' para voltar ao menu: ".format(produto)))
                 deseja_continuar.lower()
 
                 if (deseja_continuar != 's' and deseja_continuar != 'n'):
@@ -48,6 +52,7 @@ def remover_produto():
                 if (deseja_continuar == 'n'):
                     break
 
+# função para retornar ao menu
 def voltar_ao_menu():
     import main
     main.mostrar_menu()

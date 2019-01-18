@@ -6,6 +6,7 @@ def mostrar_carrinho():
     import compra
 
     print('Você adicionou os seguintes itens ao carrinho:')
+    # para cada item no carrinh_produtos, imprima-o
     for i in carrinho_produtos:
         print(i)
 
@@ -30,28 +31,40 @@ def remover_produto_carrinho():
 
     while (deseja_continuar == 's'):
         print('\nVocê adicionou os seguintes itens: {0}'.format(carrinho_produtos))
-        item = int(input('\nDigite o número correspondente ao item que deseja remover: '))
-        carrinho_produtos.remove(str(item))
+        produto = str(input('\nDigite o nome do produto que deseja remover: '))
+        produto.lower()
 
-        deseja_continuar = str(input("Deseja remover mais algum item? Digite 'S' para confirmar e 'N' para fechar o carrinho: "))
+        if (produto in carrinho_produtos):
+            print('{0} removido com sucesso!'.format(produto))
+            carrinho_produtos.remove(produto)
 
-        # transforma o valor dentro de deseja_continuar para minúsculo, a fim de evitar erros de comparação
-        deseja_continuar.lower()
+            deseja_continuar = str(input("Deseja remover mais algum item? Digite 'S' para confirmar e 'N' para fechar o carrinho: "))
 
-        # verifica se deseja_continuar possui um valor diferente de 's' ou 'n', caso True, seta um valor default
-        if (deseja_continuar != 's' and deseja_continuar != 'n'):
-            print('\nComando inválido! Retornando...')
-            deseja_continuar = 's'
+            # transforma o valor dentro de deseja_continuar para minúsculo, a fim de evitar erros de comparação
+            deseja_continuar.lower()
 
-        # se a resposta é 'n' então saia do loop
-        if (deseja_continuar == 'n'):
-            break
+            # verifica se deseja_continuar possui um valor diferente de 's' ou 'n', caso True, seta um valor default
+            if (deseja_continuar != 's' and deseja_continuar != 'n'):
+                print('\nComando inválido! Retornando...')
+                deseja_continuar = 's'
+
+            # se a resposta é 'n' então saia do loop
+            if (deseja_continuar == 'n'):
+                break
+        else:
+            print('{0} não encontrado! Retornando...\n'.format(produto))
+
     finalizar_carrinho() # chama finalizar_carrinho caso saia do while
 
 # função para finalizar a compra e reexibir o menu
 def finalizar_carrinho():
-    print('\nVocê comprou os seguintes itens: {0}\nObrigado!\nRetornando ao menu...\n'.format(carrinho_produtos))
+    print('\nVocê comprou os seguintes itens: {0}\nObrigado! Retornando ao menu...\n'.format(carrinho_produtos))
+    zerar_carrinho()
     voltar_ao_menu()
+
+# função para limpar os itens em carrinho_produtos
+def zerar_carrinho():
+    carrinho_produtos.clear()
 
 def voltar_ao_menu():
     import main
